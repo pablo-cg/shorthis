@@ -2,6 +2,7 @@
 import { defineConfig } from 'unocss';
 import presetWebFonts from '@unocss/preset-web-fonts';
 import presetUno from '@unocss/preset-uno';
+import presetIcons from '@unocss/preset-icons';
 
 export default defineConfig({
   presets: [
@@ -14,12 +15,19 @@ export default defineConfig({
         mono: ['JetBrains Mono', 'JetBrains Mono:400,500,600'],
       },
     }),
+    presetIcons({
+      scale: 1.2,
+      extraProperties: {
+        display: 'inline-block',
+        'vertical-align': 'middle',
+      },
+    }),
   ],
   theme: {
     colors: {
       dark: '#0B101B',
       light: '#C9CED6',
-      'dark-gray': '#181E29'
+      'dark-gray': '#181E29',
     },
   },
 });
