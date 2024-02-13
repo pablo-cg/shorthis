@@ -25,9 +25,9 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      dark: '#0B101B',
+      dark: '#121212',
       light: '#C9CED6',
-      'dark-gray': '#181E29',
+      'nuxt-green': '#00dc82',
     },
   },
 });
