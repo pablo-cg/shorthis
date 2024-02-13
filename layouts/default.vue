@@ -17,7 +17,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 });
 
-const authenticated = ref(true);
+const authenticated = ref(false);
 const username = ref('pablo-cg');
 </script>
 
@@ -26,7 +26,7 @@ const username = ref('pablo-cg');
     <div
       class="container mx-auto py-7 px-4 md:px-0 flex items-center justify-between"
     >
-      <section class="font-bold text-3xl leading-none">
+      <section class="font-bold text-3xl leading-none font-montserrat">
         <NuxtLink to="/" class="gradient-text text-transparent">
           Shorthis
         </NuxtLink>
@@ -63,6 +63,27 @@ const username = ref('pablo-cg');
   </header>
 
   <NuxtPage />
+
+  <footer class="w-full fixed bottom-0 inset-x-0">
+    <div
+      class="container mx-auto py-4 px-4 md:px-0 flex items-center justify-between"
+    >
+      <section class="text-sm text-light/70">
+        <p>
+          ⚡Made by
+          <NuxtLink external target="_blank" to="https://github.com/pablo-cg" class="hover:text-white">
+            @pablo-cg
+          </NuxtLink>
+          using
+          <NuxtLink external target="_blank" to="https://nuxt.com" class="hover:text-nuxt-green">
+            Nuxt 3
+            <span class="i-lucide:external-link text-xs" />
+          </NuxtLink>
+        </p>
+      </section>
+    </div>
+  </footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
