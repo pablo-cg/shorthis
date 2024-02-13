@@ -1,0 +1,25 @@
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    #144ee3,
+    #eb568e,
+    #a353aa,
+    #eb568e,
+    #144ee3,
+    #eb568e,
+    #a353aa
+  );
+
+  background-size: 300% 300%;
+  background-clip: text;
+  animation: move-bg 6s infinite linear;
+}
+
+@keyframes move-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
