@@ -15,6 +15,7 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.1.164",
     "@unocss/nuxt": "^0.58.5",
     "@unocss/preset-web-fonts": "^0.58.5",
     "@vueuse/nuxt": "^10.7.2"
