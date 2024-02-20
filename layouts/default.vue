@@ -1,8 +1,7 @@
 <script setup lang="ts">
 useHead({
   bodyAttrs: {
-    class:
-      'relative font-sans bg-dark text-light transition transition-colors duration-300',
+    class: 'relative font-sans bg-dark text-light',
   },
 
   titleTemplate: (title) => {
@@ -17,14 +16,27 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 });
 
-const authenticated = ref(false);
+const authenticated = ref(true);
 const username = ref('pablo-cg');
-</script>
 
+const isCommandPanelOpen = ref(false);
+const toggleCommandPanel = useToggle(isCommandPanelOpen);
+
+const keys = useMagicKeys({
+  passive: false,
+  onEventFired(e) {
+    if (e.ctrlKey && e.key === 'k' && e.type === 'keydown') e.preventDefault();
+  },
+});
+
+whenever(keys.ctrl_k, () => toggleCommandPanel());
+
+const { isNewLinkModalOpen, toggleNewLinkModal } = useLinkModal();
+</script>
 <template>
-  <header class="w-full sticky top-0 inset-x-0">
+  <header class="w-full sticky top-0 inset-x-0 bg-dark z-50">
     <div
-      class="container mx-auto py-7 px-4 md:px-0 flex items-center justify-between"
+      class="container mx-auto py-6 px-4 md:px-0 flex items-center justify-between"
     >
       <section class="font-bold text-3xl leading-none font-montserrat">
         <NuxtLink to="/" class="gradient-text text-transparent">
@@ -46,6 +58,7 @@ const username = ref('pablo-cg');
           <span class="i-lucide:at-sign" /> {{ username }}
         </button>
         <button
+          @click="toggleCommandPanel()"
           class="flex justify-center items-center px-2 py-1 rounded-lg transition duration-300 hover:text-white hover:scale-115"
         >
           <span class="i-lucide:command" />
@@ -64,7 +77,7 @@ const username = ref('pablo-cg');
 
   <NuxtPage />
 
-  <footer class="w-full fixed bottom-0 inset-x-0">
+  <footer class="w-full fixed bottom-0 inset-x-0 backdrop-blur">
     <div
       class="container mx-auto py-4 px-4 md:px-0 flex items-center justify-between"
     >
@@ -90,7 +103,7 @@ const username = ref('pablo-cg');
             <span class="i-lucide:external-link text-xs" />
           </NuxtLink>
           <span class="text-xs block">
-            Based on
+            A blatant copy of
             <NuxtLink
               external
               target="_blank"
@@ -113,6 +126,11 @@ const username = ref('pablo-cg');
       </section>
     </div>
   </footer>
+
+  <Teleport to="body">
+    <CommandPanel :is-open="isCommandPanelOpen" @close="toggleCommandPanel" />
+    <ModalNewLink :is-open="isNewLinkModalOpen" @close="toggleNewLinkModal" />
+  </Teleport>
 </template>
 
 <style scoped></style>
