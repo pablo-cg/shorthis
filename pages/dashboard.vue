@@ -28,6 +28,7 @@ const { toggleNewLinkModal } = useLinkModal();
     <main class="container mx-auto px-4 md:px-0">
       <section class="my-7">
         <input
+          name="input-search-link"
           class="w-full px-3 py-1 rounded-md border border-light/20 bg-zinc-900 text-white"
           type="text"
           placeholder="Search links"
@@ -49,10 +50,11 @@ const { toggleNewLinkModal } = useLinkModal();
       </section>
       <section v-else class="grid grid-cols-1 gap-3 lg:grid-cols-3">
         <LinkCard
-          v-for="{ slug, url, description } in links"
+          v-for="{ slug, url, description, active } in links"
           :slug="slug"
           :url="url"
           :description="description"
+          :active="active"
         />
       </section>
     </main>
