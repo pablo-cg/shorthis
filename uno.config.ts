@@ -30,4 +30,14 @@ export default defineConfig({
       'nuxt-green': '#00dc82',
     },
   },
+  preflights: [
+    {
+      getCSS: ({ theme }) => `body {
+        position: relative;
+        background-color: ${theme.colors.dark};
+        color: ${theme.colors.light};
+        font-family: ${theme.fontFamily.sans};
+      }`,
+    },
+  ],
 });

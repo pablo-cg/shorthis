@@ -7,7 +7,7 @@
         Open Source URL Shortner
       </h1>
       <h2 class="text-lg text-light/80 font-montserrat">
-        custom slugs & unlimited links
+        custom slugs &amp; unlimited links
       </h2>
     </section>
     <section class="flex gap-2 justify-center mt-5">
@@ -19,7 +19,6 @@
         Getting Started
       </NuxtLink>
       <NuxtLink
-        external
         target="_blank"
         to="https://github.com/pablo-cg/shorthis"
         class="flex gap-2 items-center px-2 py-1 rounded-lg text-white hover:text-light transition duration-300"
