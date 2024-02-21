@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { MenuItem } from '~/types/menu';
+
 useHead({
   bodyAttrs: {
     class: 'relative font-sans bg-dark text-light',
@@ -32,6 +34,41 @@ const keys = useMagicKeys({
 whenever(keys.ctrl_k, () => toggleCommandPanel());
 
 const { isNewLinkModalOpen, toggleNewLinkModal } = useLinkModal();
+
+const menuItems: MenuItem[] = [
+  {
+    id: 1,
+    label: 'Create a link',
+    icon: 'i-lucide:plus',
+    action: toggleNewLinkModal,
+  },
+  {
+    id: 2,
+    label: 'Dashboard',
+    icon: 'i-lucide:layout-dashboard',
+    async action() {
+      await navigateTo('/dashboard');
+    },
+  },
+  {
+    id: 3,
+    label: 'Report a bug',
+    icon: 'i-lucide:bug',
+    async action() {
+      await navigateTo('https://github.com/pablo-cg/shorthis/issues/new', {
+        open: {
+          target: '_blank',
+        },
+      });
+    },
+  },
+  {
+    id: 4,
+    label: 'Sign Out',
+    icon: 'i-lucide:log-out',
+    action: () => {},
+  },
+];
 </script>
 <template>
   <header class="w-full sticky top-0 inset-x-0 bg-dark z-50">
@@ -51,12 +88,12 @@ const { isNewLinkModalOpen, toggleNewLinkModal } = useLinkModal();
         >
           Sign in
         </NuxtLink>
-        <button
+        <DropdownMenu
           v-else
-          class="px-2 py-1 rounded-lg text-white hover:text-light transition duration-300 border border-transparent active:border-white"
-        >
-          <span class="i-lucide:at-sign" /> {{ username }}
-        </button>
+          :menu-label="username"
+          menu-icon="i-lucide:at-sign"
+          :menu-items="menuItems"
+        />
         <button
           @click="toggleCommandPanel()"
           class="flex justify-center items-center px-2 py-1 rounded-lg transition duration-300 hover:text-white hover:scale-115"
