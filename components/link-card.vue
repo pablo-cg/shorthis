@@ -33,8 +33,10 @@ const menuItems: MenuItem[] = [
 
 const { copy } = useClipboard();
 
+const location = useBrowserLocation();
+
 async function copySlugLink(slug: string) {
-  await copy(`https://shorthis.vercel.app/l/${slug}`);
+  await copy(`${location.value.host}/l/${slug}`);
 }
 </script>
 
@@ -46,7 +48,7 @@ async function copySlugLink(slug: string) {
           to="#"
           class="text-lg font-semibold text-white flex items-center gap-2 hover:text-white/90"
         >
-          <StatusBadge :active="active" class="-mr-1 text-sm"/>
+          <StatusBadge :active="active" class="-mr-1 text-sm" />
           {{ slug }}
         </NuxtLink>
         <button
