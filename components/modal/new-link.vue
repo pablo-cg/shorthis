@@ -31,6 +31,7 @@ function randomizeSlug() {
         <div class="flex flex-col text-white gap-1">
           <label for="url">Enter the URL here</label>
           <input
+            id="url"
             name="url"
             type="text"
             placeholder="https://"
@@ -44,6 +45,7 @@ function randomizeSlug() {
           </small>
           <div class="flex items-center justify-between gap-1">
             <input
+              id="slug"
               name="slug"
               type="text"
               placeholder="https://"
@@ -63,12 +65,16 @@ function randomizeSlug() {
         <div class="flex flex-col text-white gap-1">
           <label for="description">Description (optional):</label>
           <textarea
+            id="description"
             name="description"
             class="w-full px-3 py-1 rounded-md bg-light/10"
-          ></textarea>
+          />
         </div>
         <section class="flex flex-row-reverse">
-          <button type="submit" class="px-3 py-1 flex gap-1 items-center text-white hover:bg-light/10 rounded-md">
+          <button
+            type="submit"
+            class="px-3 py-1 flex gap-1 items-center text-white hover:bg-light/10 rounded-md"
+          >
             <span class="i-lucide:rocket" />
             <span>Create your link</span>
           </button>
