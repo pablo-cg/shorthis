@@ -1,11 +1,41 @@
 <script setup lang="ts">
+import type { MenuItem } from '~/types/menu';
+
 interface Props {
   slug: string;
   url: string;
   description?: string;
+  active: boolean;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+
+const menuItems: MenuItem[] = [
+  {
+    id: 1,
+    label: 'Copy',
+    icon: 'i-lucide:copy',
+    action: () => copySlugLink(props.slug),
+  },
+  {
+    id: 1,
+    label: 'Edit',
+    icon: 'i-lucide:edit',
+    action() {},
+  },
+  {
+    id: 1,
+    label: 'Delete',
+    icon: 'i-lucide:trash',
+    action() {},
+  },
+];
+
+const { copy } = useClipboard();
+
+async function copySlugLink(slug: string) {
+  await copy(`https://shorthis.vercel.app/l/${slug}`);
+}
 </script>
 
 <template>
@@ -16,20 +46,21 @@ defineProps<Props>();
           to="#"
           class="text-lg font-semibold text-white flex items-center gap-2 hover:text-white/90"
         >
+          <StatusBadge :active="active" class="-mr-1 text-sm"/>
           {{ slug }}
         </NuxtLink>
         <button
+          @click="copySlugLink(slug)"
           class="p-1 text-xs text-white/60 hover:text-white hover:scale-110 transition"
         >
           <span class="i-lucide:copy" />
         </button>
       </div>
-      <button
-        class="flex items-center gap-1 px-2 py-1 rounded-lg text-light hover:text-white transition duration-300 border border-transparent"
-      >
-        <span class="i-lucide:settings-2" />
-        Options
-      </button>
+      <DropdownMenu
+        menu-label="Options"
+        menu-icon="i-lucide:settings-2"
+        :menu-items="menuItems"
+      />
     </section>
     <span class="text-light/60">{{ url }}</span>
     <p class="mt-2">{{ description || 'No description.' }}</p>
