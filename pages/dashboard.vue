@@ -14,22 +14,21 @@ const { toggleNewLinkModal } = useLinkModal();
 
 <template>
   <div class="mb-20">
-    <section class="container mx-auto px-4 md:px-0 flex justify-between">
+    <section class="container mx-auto px-4 my-2 md:px-0 flex justify-between">
       <h1 class="text-2xl font-semibold text-white">Dashboard</h1>
-      <button
+      <UiButton
         @click="toggleNewLinkModal()"
-        class="flex items-center gap-1 px-2 py-1 rounded-lg text-white hover:text-light transition duration-300 border border-transparent"
+        class="transform active:scale-90"
       >
         <span class="i-lucide:plus" />
         Create new link
-      </button>
+      </UiButton>
     </section>
     <hr class="border-light/20 mt-3" />
     <main class="container mx-auto px-4 md:px-0">
       <section class="my-7">
-        <input
+        <UiInput
           name="input-search-link"
-          class="w-full px-3 py-1 rounded-md border border-light/20 bg-zinc-900 text-white"
           type="text"
           placeholder="Search links"
         />
@@ -42,11 +41,12 @@ const { toggleNewLinkModal } = useLinkModal();
         <h1 class="text-white text-2xl font-semibold">
           Lets create some links!
         </h1>
-        <button
-          class="px-3 py-1 rounded-md text-white hover:text-light transition duration-300 border border-white"
+        <UiButton
+          @click="toggleNewLinkModal()"
+          class="px-4! transform active:scale-90 border"
         >
           Create a link
-        </button>
+        </UiButton>
       </section>
       <section v-else class="grid grid-cols-1 gap-3 lg:grid-cols-3">
         <LinkCard
