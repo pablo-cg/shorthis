@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { MenuItem } from '~/types/menu';
-
 interface Props {
   slug: string;
   url: string;
@@ -10,34 +8,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const menuItems: MenuItem[] = [
-  {
-    id: 1,
-    label: 'Copy',
-    icon: 'i-lucide:copy',
-    action: () => copySlugLink(props.slug),
-  },
-  {
-    id: 1,
-    label: 'Edit',
-    icon: 'i-lucide:edit',
-    action() {},
-  },
-  {
-    id: 1,
-    label: 'Delete',
-    icon: 'i-lucide:trash',
-    action() {},
-  },
-];
-
-const { copy } = useClipboard();
-
-const location = useBrowserLocation();
-
-async function copySlugLink(slug: string) {
-  await copy(`${location.value.host}/l/${slug}`);
-}
+const { copySlugLink, menuItems } = useLinkCardOptions({ slug: props.slug });
 </script>
 
 <template>
@@ -48,7 +19,10 @@ async function copySlugLink(slug: string) {
           to="#"
           class="text-lg font-semibold text-white flex items-center gap-2 hover:text-white/90"
         >
-          <StatusBadge :active="active" class="-mr-1 text-sm" />
+          <StatusBadge
+            :active="active"
+            class="-mr-1 text-sm"
+          />
           {{ slug }}
         </NuxtLink>
         <button
