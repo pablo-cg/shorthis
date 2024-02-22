@@ -94,17 +94,17 @@ const menuItems: MenuItem[] = [
           menu-icon="i-lucide:at-sign"
           :menu-items="menuItems"
         />
-        <button
+        <UiButton
           @click="toggleCommandPanel()"
-          class="flex justify-center items-center px-2 py-1 rounded-lg transition duration-300 hover:text-white hover:scale-115"
+          class="text-light! hover:text-white! hover:scale-115"
         >
           <span class="i-lucide:command" />
-        </button>
+        </UiButton>
         <NuxtLink
           to="https://github.com/pablo-cg/shorthis"
           external
           target="_blank"
-          class="flex justify-center items-center px-2 py-1 rounded-lg transition duration-300 hover:text-white hover:scale-115"
+          class="flex justify-center items-center px-2 py-1 rounded-lg transition duration-100 hover:text-white hover:scale-115"
         >
           <span class="i-lucide:github" />
         </NuxtLink>
