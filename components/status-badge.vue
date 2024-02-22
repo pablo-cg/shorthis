@@ -4,9 +4,10 @@ defineProps<{ active: boolean }>();
 
 <template>
   <span
+    class="i-lucide:badge-check"
     :class="{
-      'bg-green i-lucide:badge-check': active,
-      'bg-red i-lucide:badge-alert': !active,
+      'bg-green': active,
+      'bg-light/50': !active,
     }"
   />
 </template>
