@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { nanoid } from 'nanoid';
-
-const slug = ref('');
-
 interface Props {
   isOpen: boolean;
 }
@@ -11,73 +7,79 @@ interface Emits {
   (e: 'close'): void;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 const emit = defineEmits<Emits>();
 
-function randomizeSlug() {
-  slug.value = nanoid(6);
+const { createLink, formValues, randomizeSlug, resetForm } = useNewLinkForm();
+
+function handleCloseModal() {
+  emit('close');
 }
+
+onActivated(() => {
+  resetForm();
+});
 </script>
 
 <template>
-  <ModalWrapper :is-open="isOpen" @close="emit('close')">
+  <ModalWrapper
+    :is-open="isOpen"
+    @close="handleCloseModal"
+  >
     <HeadlessDialogPanel
       class="w-full max-w-xl bg-dark rounded-md border border-light/20 p-4"
     >
       <HeadlessDialogTitle class="text-2xl font-semibold text-white mb-4">
         Create a Link
       </HeadlessDialogTitle>
-      <form @submit.prevent="null" class="flex flex-col gap-4">
+      <form
+        @submit.prevent="createLink"
+        class="flex flex-col gap-4"
+      >
         <div class="flex flex-col text-white gap-1">
           <label for="url">Enter the URL here</label>
-          <input
-            id="url"
+          <UiInput
             name="url"
             type="text"
             placeholder="https://"
-            class="px-3 py-1 rounded-md bg-light/10"
           />
         </div>
         <div class="flex flex-col text-white">
           <label for="slug"> Custom slug: </label>
           <small class="text-light/40 mb-1">
-            https://shorthis.vercel.app/l/{{ slug }}
+            https://shorthis.vercel.app/l/{{ formValues.slug }}
           </small>
-          <div class="flex items-center justify-between gap-1">
-            <input
-              id="slug"
+          <div class="flex items-start justify-between gap-1">
+            <UiInput
               name="slug"
               type="text"
-              placeholder="https://"
-              class="w-full px-3 py-1 rounded-md bg-light/10"
-              v-model="slug"
+              placeholder="Anything you want..."
             />
-            <button
+            <UiButton
               type="button"
               @click="randomizeSlug"
-              class="px-3 py-1 rounded-md flex gap-1 items-center hover:bg-light/10 active:scale-95"
+              class="hover:bg-light/10 hover:text-white active:scale-95!"
             >
               <span class="i-lucide:refresh-cw text-sm" />
               <span>Randomize</span>
-            </button>
+            </UiButton>
           </div>
         </div>
         <div class="flex flex-col text-white gap-1">
           <label for="description">Description (optional):</label>
-          <textarea
+          <UiTextarea
             id="description"
             name="description"
-            class="w-full px-3 py-1 rounded-md bg-light/10"
           />
         </div>
         <section class="flex flex-row-reverse">
-          <button
+          <UiButton
             type="submit"
-            class="px-3 py-1 flex gap-1 items-center text-white hover:bg-light/10 rounded-md"
+            class="hover:text-white hover:bg-light/10"
           >
             <span class="i-lucide:rocket" />
             <span>Create your link</span>
-          </button>
+          </UiButton>
         </section>
       </form>
     </HeadlessDialogPanel>
