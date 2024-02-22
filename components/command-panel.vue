@@ -10,62 +10,20 @@ interface Emits {
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
-const queryInput = ref('');
+const { filteredCommandOptions, queryInput } = useCommandPanelOptions();
 
 watchEffect(() => {
   if (props.isOpen) {
     queryInput.value = '';
   }
 });
-
-const commandOptions = [
-  {
-    id: 1,
-    label: 'Create new link',
-    icon: 'i-lucide:plus',
-    action: createLink,
-  },
-  {
-    id: 2,
-    label: 'Dashboard',
-    icon: 'i-lucide:layout-dashboard',
-    to: '/dashboard',
-  },
-  {
-    id: 3,
-    label: 'Report a bug',
-    icon: 'i-lucide:bug',
-    to: 'https://github.com/pablo-cg/shorthis/issues/new',
-    target: '_blank',
-  },
-  {
-    id: 4,
-    label: 'Repository',
-    icon: 'i-lucide:github',
-    to: 'https://github.com/pablo-cg/shorthis',
-    target: '_blank',
-  },
-];
-
-const filteredCommandOptions = computed(() => {
-  if (queryInput.value.trim()) {
-    return commandOptions.filter((option) =>
-      option.label.toLowerCase().trim().includes(queryInput.value.trim()),
-    );
-  }
-
-  return commandOptions;
-});
-
-const { toggleNewLinkModal } = useLinkModal();
-
-function createLink() {
-  toggleNewLinkModal();
-}
 </script>
 
 <template>
-  <ModalWrapper :is-open="isOpen" @close="emit('close')">
+  <ModalWrapper
+    :is-open="isOpen"
+    @close="emit('close')"
+  >
     <HeadlessDialogPanel
       class="w-full max-w-xl bg-dark rounded-md border border-light/20"
     >
