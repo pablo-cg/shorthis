@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import UiButton from './ui/button.vue';
 import { type MenuItem } from '~/types/menu';
-import AppButton from './app-button.vue';
 
 interface Props {
   menuIcon: string;
@@ -13,7 +13,7 @@ defineProps<Props>();
 
 <template>
   <HeadlessMenu as="div" class="relative text-white">
-    <HeadlessMenuButton :as="AppButton" :id="`menu-button-${menuLabel.trim()}`">
+    <HeadlessMenuButton :as="UiButton" :id="`menu-button-${menuLabel.trim()}`">
       <span :class="menuIcon" /> {{ menuLabel }}
     </HeadlessMenuButton>
     <transition
