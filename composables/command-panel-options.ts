@@ -1,3 +1,4 @@
+/* @unocss-include */
 export const useCommandPanelOptions = () => {
   const { toggleNewLinkModal } = useLinkModal();
 

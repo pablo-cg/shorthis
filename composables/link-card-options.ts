@@ -1,3 +1,4 @@
+/* @unocss-include */
 import type { MenuItem } from '~/types/menu';
 
 export const useLinkCardOptions = ({ slug }: { slug: string }) => {
