@@ -6,6 +6,8 @@ useHead({
     class: 'relative font-sans bg-dark text-light',
   },
 
+  link: [{ rel: 'icon', href: '/enlace.webp', type: 'image/webp' }],
+
   titleTemplate: (title) => {
     return title ? `${title} | Shorthis` : 'Shorthis';
   },
@@ -76,7 +78,15 @@ const menuItems: MenuItem[] = [
       class="container mx-auto py-6 px-4 md:px-0 flex items-center justify-between"
     >
       <section class="font-bold text-3xl leading-none font-montserrat">
-        <NuxtLink to="/" class="gradient-text text-transparent">
+        <NuxtLink
+          to="/"
+          class="gradient-text text-transparent flex items-center gap-3"
+        >
+          <img
+            src="/enlace.webp"
+            class="w-6"
+            alt="Shorthis Logo"
+          />
           Shorthis
         </NuxtLink>
       </section>
@@ -165,8 +175,14 @@ const menuItems: MenuItem[] = [
   </footer>
 
   <Teleport to="body">
-    <CommandPanel :is-open="isCommandPanelOpen" @close="toggleCommandPanel" />
-    <ModalNewLink :is-open="isNewLinkModalOpen" @close="toggleNewLinkModal" />
+    <CommandPanel
+      :is-open="isCommandPanelOpen"
+      @close="toggleCommandPanel"
+    />
+    <ModalNewLink
+      :is-open="isNewLinkModalOpen"
+      @close="toggleNewLinkModal"
+    />
   </Teleport>
 </template>
 
