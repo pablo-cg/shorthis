@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import type { LinkItem } from '~/types/link';
+import type { MenuItem } from '~/types/menu';
+
 interface Props {
   slug: string;
   url: string;
@@ -6,9 +9,42 @@ interface Props {
   active: boolean;
 }
 
-const props = defineProps<Props>();
+interface Emit {
+  (e: 'edit', link: LinkItem): void;
+  (e: 'delete', link: LinkItem): void;
+}
 
-const { copySlugLink, menuItems } = useLinkCardOptions({ slug: props.slug });
+const props = defineProps<Props>();
+const emit = defineEmits<Emit>();
+
+const menuItems: MenuItem[] = [
+  {
+    id: 1,
+    label: 'Copy',
+    icon: 'i-lucide:copy',
+    action: () => copySlugLink(props.slug),
+  },
+  {
+    id: 1,
+    label: 'Edit',
+    icon: 'i-lucide:edit',
+    action: () => emit('edit', props),
+  },
+  {
+    id: 1,
+    label: 'Delete',
+    icon: 'i-lucide:trash',
+    action: () => emit('delete', props),
+  },
+];
+
+const { copy } = useClipboard();
+
+const location = useBrowserLocation();
+
+async function copySlugLink(slug: string) {
+  await copy(`${location.value.host}/l/${slug}`);
+}
 </script>
 
 <template>
