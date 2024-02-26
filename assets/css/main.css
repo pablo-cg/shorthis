@@ -1,18 +1,18 @@
 .gradient-text {
   background: linear-gradient(
     to right,
-    #a855f7,
-    #eab308,
-    #ec4899,
-    #eab308,
-    #a855f7,
-    #eab308,
-    #ec4899
+    #01c0fa,
+    #ffc344,
+    #fd6930,
+    #ffc344,
+    #01c0fa,
+    #ffc344,
+    #fd6930
   );
 
   background-size: 300% 300%;
   background-clip: text;
-  animation: move-bg 6s infinite linear;
+  animation: move-bg 10s infinite linear;
 }
 
 @keyframes move-bg {
