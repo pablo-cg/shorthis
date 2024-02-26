@@ -12,7 +12,7 @@ const validationSchema = object({
 
 type FormSchema = InferType<typeof validationSchema>;
 
-export const useNewLinkForm = () => {
+export const useCreateLink = () => {
   function randomizeSlug() {
     setFieldValue('slug', nanoid(6));
   }

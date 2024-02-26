@@ -10,15 +10,12 @@ interface Emits {
 defineProps<Props>();
 const emit = defineEmits<Emits>();
 
-const { createLink, formValues, randomizeSlug, resetForm } = useNewLinkForm();
+const { createLink, formValues, randomizeSlug, resetForm } = useCreateLink();
 
 function handleCloseModal() {
   emit('close');
-}
-
-onActivated(() => {
   resetForm();
-});
+}
 </script>
 
 <template>
@@ -27,7 +24,7 @@ onActivated(() => {
     @close="handleCloseModal"
   >
     <HeadlessDialogPanel
-      class="w-full max-w-xl bg-dark rounded-md border border-light/20 p-4"
+      class="w-full max-w-xl bg-dark rounded-md border border-light/10 p-4"
     >
       <HeadlessDialogTitle class="text-2xl font-semibold text-white mb-4">
         Create a Link

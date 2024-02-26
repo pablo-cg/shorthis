@@ -35,14 +35,14 @@ const keys = useMagicKeys({
 
 whenever(keys.ctrl_k, () => toggleCommandPanel());
 
-const { isNewLinkModalOpen, toggleNewLinkModal } = useLinkModal();
+const { isCreateLinkModalOpen, toggleCreateLinkModal } = useCreateLinkModal();
 
 const menuItems: MenuItem[] = [
   {
     id: 1,
     label: 'Create a link',
     icon: 'i-lucide:plus',
-    action: toggleNewLinkModal,
+    action: toggleCreateLinkModal,
   },
   {
     id: 2,
@@ -179,9 +179,9 @@ const menuItems: MenuItem[] = [
       :is-open="isCommandPanelOpen"
       @close="toggleCommandPanel"
     />
-    <ModalNewLink
-      :is-open="isNewLinkModalOpen"
-      @close="toggleNewLinkModal"
+    <ModalCreateLink
+      :is-open="isCreateLinkModalOpen"
+      @close="toggleCreateLinkModal"
     />
   </Teleport>
 </template>

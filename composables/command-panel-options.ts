@@ -1,6 +1,6 @@
 /* @unocss-include */
 export const useCommandPanelOptions = () => {
-  const { toggleNewLinkModal } = useLinkModal();
+  const { toggleCreateLinkModal } = useCreateLinkModal();
 
   const queryInput = ref('');
 
@@ -44,7 +44,7 @@ export const useCommandPanelOptions = () => {
   });
 
   function createLink() {
-    toggleNewLinkModal();
+    toggleCreateLinkModal();
   }
 
   return {
