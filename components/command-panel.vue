@@ -25,7 +25,7 @@ watchEffect(() => {
     @close="emit('close')"
   >
     <HeadlessDialogPanel
-      class="w-full max-w-xl bg-dark rounded-md border border-light/20"
+      class="w-full max-w-xl bg-dark rounded-md border border-light/10"
     >
       <HeadlessCombobox>
         <HeadlessComboboxInput
