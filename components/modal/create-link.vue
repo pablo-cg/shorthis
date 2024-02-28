@@ -1,13 +1,8 @@
 <script setup lang="ts">
-interface Props {
-  isOpen: boolean;
-}
-
 interface Emits {
   (e: 'close'): void;
 }
 
-defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const { createLink, formValues, randomizeSlug, resetForm } = useCreateLink();
@@ -20,7 +15,7 @@ function handleCloseModal() {
 
 <template>
   <ModalWrapper
-    :is-open="isOpen"
+    is-open
     @close="handleCloseModal"
   >
     <HeadlessDialogPanel

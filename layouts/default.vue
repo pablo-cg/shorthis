@@ -174,16 +174,14 @@ const menuItems: MenuItem[] = [
     </div>
   </footer>
 
-  <Teleport to="body">
-    <CommandPanel
-      :is-open="isCommandPanelOpen"
-      @close="toggleCommandPanel"
-    />
-    <ModalCreateLink
-      :is-open="isCreateLinkModalOpen"
-      @close="toggleCreateLinkModal"
-    />
-  </Teleport>
+  <CommandPanel
+    v-if="isCommandPanelOpen"
+    @close="toggleCommandPanel"
+  />
+  <ModalCreateLink
+    v-if="isCreateLinkModalOpen"
+    @close="toggleCreateLinkModal"
+  />
 </template>
 
 <style scoped></style>

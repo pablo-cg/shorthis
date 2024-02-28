@@ -1,37 +1,30 @@
 <script setup lang="ts">
-interface Props {
-  isOpen: boolean;
-}
-
 interface Emits {
   (e: 'close'): void;
 }
 
-const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 const { filteredCommandOptions, queryInput } = useCommandPanelOptions();
 
-watchEffect(() => {
-  if (props.isOpen) {
-    queryInput.value = '';
-  }
+onMounted(() => {
+  queryInput.value = '';
 });
 </script>
 
 <template>
   <ModalWrapper
-    :is-open="isOpen"
+    is-open
     @close="emit('close')"
   >
     <HeadlessDialogPanel
       class="w-full max-w-xl bg-dark rounded-md border border-light/10"
     >
       <HeadlessCombobox>
-        <HeadlessComboboxInput
+        <input
           class="w-full bg-transparent text-white p-4 outline-none"
           placeholder="Search..."
-          @change="queryInput = $event.target.value"
+          v-model="queryInput"
         />
 
         <HeadlessComboboxOptions
