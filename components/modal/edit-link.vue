@@ -1,29 +1,16 @@
 <script setup lang="ts">
-interface Props {
-  isOpen: boolean;
-}
-
 interface Emits {
   (e: 'close'): void;
 }
 
-defineProps<Props>();
-
 const emit = defineEmits<Emits>();
 
-const { handleSubmit, resetForm, setValues, values, currentLinkItem } =
-  useEditLink();
+const { handleSubmit, resetForm, currentLinkItem } = useEditLink();
 
 function handleCloseModal() {
-  currentLinkItem.value = null;
+  resetForm();
   emit('close');
 }
-
-watch(currentLinkItem, () => {
-  if (currentLinkItem.value) {
-    setValues(currentLinkItem.value);
-  }
-});
 
 const editLink = handleSubmit((values) => {
   console.log('editLink | values:', values);
@@ -32,7 +19,7 @@ const editLink = handleSubmit((values) => {
 
 <template>
   <ModalWrapper
-    :is-open="isOpen"
+    :is-open="true"
     @close="handleCloseModal"
   >
     <HeadlessDialogPanel
@@ -64,12 +51,10 @@ const editLink = handleSubmit((values) => {
           <label for="active">Active: </label>
           <UiSwitch name="active" />
         </div>
-        <p
-          class="border border-red-900 rounded-md p-4 bg-red-900/10 text-red-300 flex items-center gap-2"
-        >
-          <span class="i-lucide:info" />
-          This action is irreversible
-        </p>
+        <UiAlert
+          text="This action is irreversible"
+          severity="danger"
+        />
         <section class="flex flex-row-reverse">
           <UiButton
             type="submit"
