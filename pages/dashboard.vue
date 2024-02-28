@@ -18,15 +18,10 @@ const toggleDeleteModal = useToggle(isDeleteLinkModalOpen);
 const isEditLinkModalOpen = ref(false);
 const toggleEditModal = useToggle(isEditLinkModalOpen);
 
-const selectedLink = ref<LinkItem | null>(null);
-
-const currentLinkItem = useState<LinkItem | null>(
-  'currentLinkItem',
-  () => null,
-);
+const currentLinkItem = useState<LinkItem>('currentLinkItem');
 
 function openDeleteLinkModal(link: LinkItem) {
-  selectedLink.value = link;
+  currentLinkItem.value = link;
   toggleDeleteModal();
 }
 
@@ -88,16 +83,14 @@ function openEditLinkModal(link: LinkItem) {
       </section>
     </main>
 
-    <Teleport to="body">
-      <ModalEditLink
-        :is-open="isEditLinkModalOpen"
-        @close="toggleEditModal"
-      />
-      <ModalDeleteLink
-        :is-open="isDeleteLinkModalOpen"
-        @close="toggleDeleteModal"
-      />
-    </Teleport>
+    <ModalEditLink
+      v-if="isEditLinkModalOpen"
+      @close="toggleEditModal"
+    />
+    <ModalDeleteLink
+      v-if="isDeleteLinkModalOpen"
+      @close="toggleDeleteModal"
+    />
   </div>
 </template>
 
