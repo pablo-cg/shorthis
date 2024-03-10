@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   $development: {
     runtimeConfig: {
       turso: {
-        url: 'file:local.db',
+        databaseUrl: 'file:local.db',
         authToken: undefined,
       },
     },
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   $production: {
     runtimeConfig: {
       turso: {
-        url: process.env.TURSO_DATABASE_URL,
+        databaseUrl: process.env.TURSO_DATABASE_URL,
         authToken: process.env.TURSO_AUTH_TOKEN,
       },
     },
