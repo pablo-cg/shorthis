@@ -11,4 +11,20 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
   },
+  $development: {
+    runtimeConfig: {
+      turso: {
+        url: 'file:local.db',
+        authToken: undefined,
+      },
+    },
+  },
+  $production: {
+    runtimeConfig: {
+      turso: {
+        url: process.env.TURSO_DATABASE_URL,
+        authToken: process.env.TURSO_AUTH_TOKEN,
+      },
+    },
+  },
 });
